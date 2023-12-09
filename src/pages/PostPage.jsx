@@ -1,12 +1,11 @@
-import NavbarPrivate from "../components/NavbarPrivate";
+import { useAuth } from "../context/AuthContext";
+
 
 export const PostPage =() => {
-    return ( 
-    <>
-    <NavbarPrivate/>
-    <h1> Post Page</h1>
-    <p>En esta pagina se veran los comentarios del usuario logueado. hacer una opcion para agragar un comentario  </p>
-    <p> y una opcion para subir imagenes</p>
-    </>
-    );    
-};
+    const {user} = useAuth()
+    console.log()
+    return (
+        <di> PostPage</di>
+    )
+}
+    

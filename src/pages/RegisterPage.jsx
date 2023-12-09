@@ -7,11 +7,11 @@ import NavbarPublic from "../components/NavbarPublic";
 
 const RegisterPage = ()=> {
     const{ register, handleSubmit, formState:{errors} } = useForm();
-    const {signup, isAuthenticated} = useAuth();
+    const {signup, isAuthenticated,errors:registerError} = useAuth();
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (isAuthenticated) navigate('/Post')
+        if (isAuthenticated) navigate('/tasks')
     }, [isAuthenticated])
 
     const onSubmit = handleSubmit(async(values) => {
@@ -22,6 +22,14 @@ const RegisterPage = ()=> {
     <>    
    
     <div className="flex h-screen items-center justify-center"> 
+    {
+    registerError.map((error, i) => (
+        <div className="bg-red-500 p-2 text-white" key={i}>
+            {error}
+        </div>
+        ))    
+    }
+    
         <div className= "bg-zinc-600 max-w-md p-10 rounded-md"> 
         <form onSubmit ={onSubmit}>                    
         <h1 className="text-4xl text-center font-semibold mb-5">Register </h1>

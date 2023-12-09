@@ -1,6 +1,7 @@
-import { Fragment } from 'react'
+      import { Fragment } from 'react'
       import { Disclosure, Menu, Transition } from '@headlessui/react'
       import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+      import { useAuth } from '../context/AuthContext'
       
       const navigation = [
         { name: 'Posteos', href: '/Post', current: true },
@@ -14,6 +15,8 @@ import { Fragment } from 'react'
       }
       
       function NavbarPrivate() {
+        const {isAuthenticated} = useAuth(); 
+        
         return (
           <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
