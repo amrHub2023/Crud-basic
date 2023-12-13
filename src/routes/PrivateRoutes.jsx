@@ -6,7 +6,9 @@ const PrivateRoutes = () => {
 
     const {loading, isAuthenticated} = useAuth()
     console.log('desde private routes')
-    console.log('muestra el valor de loading y isAuth en private Routes',loading, isAuthenticated)
+    console.log('muestra el valor de loading. Se trae su valor desde autcontext',loading)
+    console.log("muestra el valor de isAuthenticated. Se trae su valor desde AuthContext", isAuthenticated)
+
    
     if (loading) return  <h1>Cargando pagina... </h1>;
 

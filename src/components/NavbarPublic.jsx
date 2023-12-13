@@ -7,17 +7,21 @@ import { useAuth } from '../context/AuthContext'
 
 
 function NavbarPublic () {
-  const {isAuthenticated, logout} = useAuth
+  const {User, isAuthenticated, logout} = useAuth
+  console.log('El valor de isAuth en Navbar es: ',isAuthenticated)
   return (
-    <nav className='text-2xl bg-zinc-600 my-3 flex justify-between py-5 px-10 rounded-md'>
-      <Link>
-      <h1 className="text-xl font-sans" >Task Manager </h1>
+    <nav className='text-2xl bg-zinc-600 my-3 flex justify-between py-5 px-10 rounded-md'>   
+    <Link to="/">  
+      <h1 className="text-xl font-sans" >        
+      Task Manager
+      </h1>
       </Link>
-      <ul className='flex gap-x-4'>
+      {/* <ul className='flex gap-x-4'> */}
+        
         {isAuthenticated ? (
           <>
         <li>
-          Bienvenido          
+          Bienvenido  {User.username}        
         </li>
 
         <li>
@@ -37,15 +41,24 @@ function NavbarPublic () {
         <li>
           <Link to ="/register">Register</Link>          
         </li>
+        <li>
+          <Link to ="/" 
+          onClick={() => {logout();}}>Logout</Link>          
+        </li>
           </>
         )}
       
-      </ul>
+      {/* </ul> */}
     </nav>
     
   )};
   export default NavbarPublic
 
+
+
+
+  // console.log('El valor de is Auth en Navbar para decir cual menu mostrar. IsAuth es: ',isAuthenticated)
+  // console.log('El valor de User en Navbar para decir cual menu mostrar. User es: ',User)
       
       // const navigation = [
       //   { name: 'Home', href: '/', current: true },

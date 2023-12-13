@@ -23,10 +23,10 @@ return (
               <Route path="/login" element = {<LoginPage />}/>
               <Route path="/register" element = {<RegisterPage/> }/>                                   
                   <Route element = {<PrivateRoutes/>}>             
-                    <Route path="/Tasks" element = {<TasksPage /> }/>        
-                    <Route path="/AddTask" element = {<TaskFormPage /> }/>        
+                    <Route path="/tasks" element = {<TasksPage /> }/>        
+                    <Route path="/Add-Task" element = {<TaskFormPage /> }/>        
                     <Route path="/Post" element = {<PostPage />}/>
-                    <Route path="/Tasks/:id" element = { <TaskFormPage/> }/>
+                    <Route path="/tasks/:id" element = { <TaskFormPage/> }/>
                     <Route path="/Profile" element = {<ProfilePage/>}/>    
                   </Route>                        
           </Routes>          

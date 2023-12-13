@@ -2,7 +2,7 @@
 import { createTaskRequest, getTasksRequest } from "../api/tasks";
 
 
-
+//se usa para mantener los datos de las tareas visibbles
 
 const TaskContext = createContext();
 
@@ -16,7 +16,6 @@ return context;
 };
 
 export const TaskProvider = ( {children} ) => {
-
 const [tasks, setTasks] = useState([]);
 
 // muestra todas las tareas
@@ -24,7 +23,7 @@ const getTasks = async () => {
     try {
         const res = await getTasksRequest();
         setTasks(res.data);
-        console.log(res);    
+        console.log('En getTasks el valor de res',res);    
     } catch (error) {
         console.error(error);
     }
@@ -32,10 +31,17 @@ const getTasks = async () => {
 };
 
 const createTask = async (task) => {
-    const res = await createTaskRequest(task)
-    console.log(task);
-}
+    try{
+        const res = await createTaskRequest(task)
+        console.log('desde TaskContext en createTasks el valor de res es: ',res);
+    } catch (error) {
+        console.log(error)
+    }
+};
 
+const deleteTask = async(id) => {
+
+};
     return (
         <TaskContext.Provider 
         value = {{ tasks, createTask, getTasks  }}
@@ -45,3 +51,4 @@ const createTask = async (task) => {
 };
 
 export default TaskContext;
+ 

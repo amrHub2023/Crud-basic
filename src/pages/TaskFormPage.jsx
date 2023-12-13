@@ -1,15 +1,17 @@
 import {useForm} from 'react-hook-form'
 import { useTasks } from '../context/TaskContext';
-
+import {useNavigate} from 'react-router-dom'
 
 
 const TaskFormPage = () => {
-    const {register, handleSubmit } = useForm();
+    const {register, handleSubmit } = useForm();  
     const {createTask} = useTasks();
+    const navigate = useNavigate();
     console.log(createTask)
 
     const onSubmit = handleSubmit ( (data) => {
       createTask(data)
+      navigate('/tasks')
     console.log(data);
 });
 
@@ -25,12 +27,16 @@ const TaskFormPage = () => {
              className='w-full bg-zinc-600 text-white px-4 py-2 rounded-md my-2'
              autoFocus
              />
-             
-            <textarea cols="2" rows="3" placeholder='Description'
-            {...register("Description")}
+
+            <textarea rows="3" placeholder='Description'
+            {...register("description")}
             className="w-full bg-zinc-600 text-white px-4 py-2 rounded-md my-2">
             </textarea>
 
+            <input type="date" name="date" placeholder='Fecha finalizacion'
+            {...register("date")}
+            className="w-full bg-zinc-600 text-white px-4 py-2 rounded-md my-2">
+            </input>
             <button> Save </button>
         </form>
     </div>

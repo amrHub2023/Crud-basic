@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, LoginRequest,  verifyToken,} from "../api/auth";
+import { registerRequest, LoginRequest,  verifyTokenRequest,} from "../api/auth";
 import Cookies from "js-cookie";
 // verifyTokenRequest
 
@@ -36,13 +36,14 @@ import Cookies from "js-cookie";
         }
         
     }          
- 
+ // Login del usuario
 const signin = async(user) => {
 try {
     const res = await LoginRequest(user);
     console.log('Desde signin el valor de res, en LoginRequest',res);    
     setUser(res.data);
-    setIsAuthenticated(true);    
+    setIsAuthenticated(true); 
+       
 } catch (error) { 
     if (Array.isArray(error.response.data)){
         return setErrors(error.response.data)
@@ -52,7 +53,7 @@ try {
 }
 };
 
-//VVolver a verificar este Logout. Se repite en auth.controller
+//Volver a verificar este Logout. Se repite en auth.controller
 const logout = () => { 
     Cookies.remove("token");
     setUser(null);
@@ -69,12 +70,9 @@ useEffect( () => {
 },[errors]);
 
 
-
-
-
 //Opcion user. VerifyTokenRequest 
 useEffect ( () => {
-async function checkLogin () {
+const checkLogin  = async () => {
     const cookies = Cookies.get();
             //verifica si existe un token
     console.log('Permite ver que es lo que viene del front, que datos trae en : ')        
@@ -86,8 +84,8 @@ async function checkLogin () {
             //const res = await verifyTokenRequest(cookies.token)
     }   try {
             //se envia el token al backend para verificar si no se cargo manualmente el token.
-            const res = await verifyToken(cookies.token)
-            console.log('el valor de verifyTokenRequest es ',verifyToken)
+            const res = await verifyTokenRequest(cookies.token)
+            console.log('el valor de verifyTokenRequest es ',verifyTokenRequest)
             console.log('el valor de la const res = await verifyTokenRequest es: ',res)
             console.log('verifica lo que viene de Res.data: ',res.data)
                     //verifica si hay algun dato

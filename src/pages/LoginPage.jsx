@@ -11,21 +11,17 @@ const LoginPage = ()=> {
     const {signin, isAuthenticated, errors:signinError } = useAuth();
     const navigate = useNavigate();
 
+    const onSubmit = handleSubmit(async(data) => { signin(data)});
+
     useEffect(() => {
         console.log ('desde login page, muestra el valor de isAuthenticated: ',isAuthenticated)
         console.log('Si isAuth es falso, significa que debe logearse, sino, lo envia a PostPage para comenzar sus tareas')
-        if (isAuthenticated) {navigate('/Tasks');}
-    }, [isAuthenticated], console.log('en login page, useEffect, en el arreglo [] se setea isAuth. el valor es: ',isAuthenticated));
+        if (isAuthenticated) navigate('/tasks');
+    }, [isAuthenticated]) 
 
-    const onSubmit = handleSubmit(async(data) => {
-        signin(data);
-    });
+  
 
-    // useEffect ( () => {
-    //     console.log('Al entrar en login page el valor de isAuthenticated es: ',isAuthenticated)
-    //     if (isAuthenticated) navigate ("/TasksPage");
-    // },[isAuthenticated] );
-    
+        
     return (
         <>
             
@@ -71,3 +67,9 @@ const LoginPage = ()=> {
     );
 };
 export default LoginPage
+
+
+// useEffect ( () => {
+    //     console.log('Al entrar en login page el valor de isAuthenticated es: ',isAuthenticated)
+    //     if (isAuthenticated) navigate ("/TasksPage");
+    // },[isAuthenticated] );

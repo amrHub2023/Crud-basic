@@ -1,16 +1,16 @@
 import axios from "./setCredentials"  
 
-const API = 'http://localhost:3000'
+const API = 'http://localhost:3000' || import.meta.env.VITE_API
 
-export const registerRequest = (user) => axios.post(`/register`,user);
+export const registerRequest = async(user) => axios.post(`/register`,user);
 
-export const LoginRequest = (user) => axios.post(`/login`,user);
+export const LoginRequest = async(user) => axios.post(`/login`,user);
 
 //Verificacion del token desde el backend
 //se relaciona con auth.routes en el bckend
 
-export const verifyToken = () => 
-axios.get("/auth/verify");
+export const verifyTokenRequest = async() => 
+axios.get(`/verify`);
 
 // export const verifyTokenRequest= async () => 
 // axios.get("/auth/verify");

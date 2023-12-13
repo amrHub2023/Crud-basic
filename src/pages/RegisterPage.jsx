@@ -2,22 +2,24 @@ import { useForm } from "react-hook-form"
 import {useAuth} from "../context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate, Link} from 'react-router-dom';
-import NavbarPublic from "../components/NavbarPublic";
+
 
 
 const RegisterPage = ()=> {
     const{ register, handleSubmit, formState:{errors} } = useForm();
-    const {signup, isAuthenticated,errors:registerError} = useAuth();
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (isAuthenticated) navigate('/tasks')
-    }, [isAuthenticated])
+    const {signup, isAuthenticated, errors:registerError} = useAuth();
+    
+    const navigate = useNavigate();
 
     const onSubmit = handleSubmit(async(values) => {
         signup(values)
     });
     
+    useEffect(() => {
+        if (isAuthenticated) navigate('/tasks')
+    }, [isAuthenticated])
+
+ 
     return ( 
     <>    
    
