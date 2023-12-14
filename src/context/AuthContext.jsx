@@ -54,6 +54,8 @@ try {
 
 //Volver a verificar este Logout. Se repite en auth.controller
 const logout = () => { 
+    console.log('Trata de saber porque en logout no funciona',Cookies)
+    console.log('el valor de Cookies.token', Cookies.token)
     Cookies.remove("token");
     setUser(null);
     setIsAuthenticated(false);

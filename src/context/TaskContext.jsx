@@ -1,5 +1,5 @@
  import { createContext,useContext, useState } from "react";
-import { createTaskRequest, getTasksRequest } from "../api/tasks";
+import { createTaskRequest, getTasksRequest, deleteTaskRequest } from "../api/tasks";
 
 
 //se usa para mantener los datos de las tareas visibbles
@@ -40,11 +40,12 @@ const createTask = async (task) => {
 };
 
 const deleteTask = async(id) => {
-
+const res = await deleteTaskRequest(id)
+console.log(res.data)
 };
     return (
         <TaskContext.Provider 
-        value = {{ tasks, createTask, getTasks  }}
+        value = {{ tasks, createTask, getTasks, deleteTask  }}
         >
         { children }
         </TaskContext.Provider>);
