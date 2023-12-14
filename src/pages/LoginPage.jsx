@@ -14,19 +14,15 @@ const LoginPage = ()=> {
     const onSubmit = handleSubmit(async(data) => { signin(data)});
 
     useEffect(() => {
-        console.log ('desde login page, muestra el valor de isAuthenticated: ',isAuthenticated)
-        console.log('Si isAuth es falso, significa que debe logearse, sino, lo envia a PostPage para comenzar sus tareas')
+       
         if (isAuthenticated) navigate('/tasks');
     }, [isAuthenticated]) 
 
-  
-
-        
-    return (
+     return (
         <>
             
             <div className="flex h-screen items-center justify-center"> 
-                <div className= "bg-zinc-600 max-w-md p-10 rounded-md"> 
+                <div className= "bg-zinc-600 max-w-md w-full p-10 rounded-md"> 
                     {signinError.map((error, i)=> (
 
                         <div claseName= "bg-red-5500 p-2 text-white my-2" key={i}>

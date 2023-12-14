@@ -14,7 +14,6 @@ import Cookies from "js-cookie";
     return context;
  };
 
-
  export const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
@@ -40,7 +39,7 @@ import Cookies from "js-cookie";
 const signin = async(user) => {
 try {
     const res = await LoginRequest(user);
-    console.log('Desde signin el valor de res, en LoginRequest',res);    
+    console.log('Desde SIGNIN el valor de res, en LoginRequest',res);    
     setUser(res.data);
     setIsAuthenticated(true); 
        
@@ -75,17 +74,19 @@ useEffect ( () => {
 const checkLogin  = async () => {
     const cookies = Cookies.get();
             //verifica si existe un token
-    console.log('Permite ver que es lo que viene del front, que datos trae en : ')        
+    console.log('AuthContext. En el checkLogin el valor de cookies.token : ',cookies.token)        
+        console.log('Se muestra al chequear el login las cookies: ',cookies)
     if (!cookies.token) {
         setIsAuthenticated(false);
-        setLoading(false);        
-        return setUser(null);
+        setLoading(false); 
+        setUser(null);       
+        return 
             //verifica que el token sea valido
             //const res = await verifyTokenRequest(cookies.token)
     }   try {
             //se envia el token al backend para verificar si no se cargo manualmente el token.
             const res = await verifyTokenRequest(cookies.token)
-            console.log('el valor de verifyTokenRequest es ',verifyTokenRequest)
+            console.log('el valor de verifyTokenRequest(cookies.token) es ',verifyTokenRequest)
             console.log('el valor de la const res = await verifyTokenRequest es: ',res)
             console.log('verifica lo que viene de Res.data: ',res.data)
                     //verifica si hay algun dato
@@ -103,11 +104,11 @@ const checkLogin  = async () => {
             setUser(null)
             setLoading(false);
         }
-    }
+    };
 checkLogin();
 },[]);
 
-
+{console.log('el valor de isAuthenticated al salir de AuthContext es: ',isAuthenticated)}
     return (
             <AuthContext.Provider 
             value={{ 

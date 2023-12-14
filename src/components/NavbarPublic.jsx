@@ -6,34 +6,40 @@ import { useAuth } from '../context/AuthContext'
 
 
 
+
 function NavbarPublic () {
-  const {User, isAuthenticated, logout} = useAuth
-  console.log('El valor de isAuth en Navbar es: ',isAuthenticated)
+  const {user, isAuthenticated, logout} = useAuth  
+  
+  const autentificacion = isAuthenticated
+  {console.log('el valor de autentificacion En navBarPublic',autentificacion)}
   return (
     <nav className='text-2xl bg-zinc-600 my-3 flex justify-between py-5 px-10 rounded-md'>   
+    {/* <Link to={isAuthenticated ? "tasks" : "/"}> Task Manager</Link> */}
     <Link to="/">  
-      <h1 className="text-xl font-sans" >        
+      <h1 className="text-2xl font-sans" >        
       Task Manager
       </h1>
       </Link>
-      {/* <ul className='flex gap-x-4'> */}
-        
+      <ul className='flex gap-x-4'> 
+        {console.log('el valor de is auth En navBarPublic',isAuthenticated)}
+        {console.log('el valor user en navBarPublic',user)}
         {isAuthenticated ? (
           <>
         <li>
-          Bienvenido  {User.username}        
+          Bienvenido  {user.id}        
         </li>
 
         <li>
-          <Link to ="/Add-Task">Add Task</Link>          
+          <ButtonLink to ="/Add-Task">Add Task</ButtonLink>          
         </li>
         <li>
           <Link to ="/" 
-          onClick={() => {logout();}}>Logout</Link>          
+          onClick={() => logout()}>Logout</Link>          
         </li>
           </>
         ):(
           <>
+          {console.log('el valor de isAuthenticated En navBarPublic',isAuthenticated)}
         <li>
           <Link to ="/login">Login</Link>          
         </li>
@@ -43,12 +49,12 @@ function NavbarPublic () {
         </li>
         <li>
           <Link to ="/" 
-          onClick={() => {logout();}}>Logout</Link>          
+          onClick={() => logout()}>Logout</Link>          
         </li>
           </>
         )}
       
-      {/* </ul> */}
+       </ul> 
     </nav>
     
   )};
