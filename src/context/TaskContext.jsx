@@ -1,5 +1,5 @@
  import { createContext,useContext, useState } from "react";
-import { createTaskRequest, getTasksRequest, deleteTaskRequest } from "../api/tasks";
+import { createTaskRequest, getTasksRequest, deleteTaskRequest, getTaskRequest, updateTaskRequest } from "../api/tasks";
 
 
 //se usa para mantener los datos de las tareas visibbles
@@ -32,24 +32,50 @@ const getTasks = async () => {
 
 const createTask = async (task) => {
     try{
-        const res = await createTaskRequest(task)
-        console.log('desde TaskContext en createTasks el valor de res es: ',res);
+        const res = await createTaskRequest(task)        
     } catch (error) {
         console.log(error)
     }
 };
 
-const deleteTask = async(id) => {
-const res = await deleteTaskRequest(id)
-console.log(res.data)
-};
+const deleteTask = async (id) => {
+    try {
+      const res = await deleteTaskRequest(id);
+      console.log('el valor de res.status al borrar un elemento',res.status)
+      if (res.status === 200) setTasks(tasks.filter((task) => task._id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+const getTask = async (id) => {
+try {
+    const res = await getTaskRequest(id);
+    return res.data;
+} catch (error) {
+    console.error(error);
+}}
+
+const updateTask = async(id, task) => {
+try {
+    const res = await updateTaskRequest(id, task); 
+} catch (error) {
+    console.error(error);
+}};
     return (
         <TaskContext.Provider 
-        value = {{ tasks, createTask, getTasks, deleteTask  }}
+        value = {{ 
+            tasks,
+            createTask,
+            getTasks,
+            deleteTask,
+            getTask,
+            updateTask
+         }}
         >
         { children }
         </TaskContext.Provider>);
 };
 
 export default TaskContext;
- 
+  

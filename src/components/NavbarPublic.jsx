@@ -182,8 +182,9 @@ export default function NavbarPublic() {
 
   return (
     <nav className='text-2xl bg-zinc-600 my-3 flex justify-between py-5 px-10  pe-8 rounded-md'>   
-    {/* <Link to={isAuthenticated ? "tasks" : "/"}> Task Manager</Link> */}
-    <Link to="/">  
+    {/* <Link to=> Task Manager</Link> */}
+    <Link  className='bg-teal-600  px-4 py-1 rounded-md text-white'
+    to={isAuthenticated ? "tasks" : "/"}>  
       <h1 className="text-2xl font-sans" >        
       Task Manager
       </h1>
@@ -200,7 +201,7 @@ export default function NavbarPublic() {
         </li>
           
         <li>
-          <Link to ="/Add-Task">Task</Link>          
+          <Link className='bg-teal-600 ps-2 pr-2  px-4  rounded-md text-xl font-bold text-black' to ="/Add-Task">Task</Link>          
         </li>
         <li>
           <Link className='bg-teal-600 ps-2 pr-2  px-4  rounded-md text-xl font-bold text-black'
@@ -211,7 +212,7 @@ export default function NavbarPublic() {
         ):(
           <>
         
-        <li className='bg-teal-600 px-4 py-1 rounded-md'>
+        <li className='bg-teal-600 px-4 py-1  rounded-md'>
           <Link to ="/login">Login</Link>          
         </li>
 
