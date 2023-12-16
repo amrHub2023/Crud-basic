@@ -3,7 +3,7 @@ import { usePosts } from '../context/PostContext';
 import PostCard from '../components/PostCard';
 
 function PostPage() {
-  const { posts, getPosts} = usePosts();
+  const { posts, getPosts } = usePosts();
 
   useEffect( () => { getPosts()},[]);
   

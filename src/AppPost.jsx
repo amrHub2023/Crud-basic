@@ -8,7 +8,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import  PrivateRoutes  from "./routes/PrivateRoutes";
 import NavbarPost from "./components/NavbarPost";
 import  PostFormPage  from "./pages/PostFormPage";
-
+import PostUsers from "./pages/PostUsers"
 import { PostProvider } from "./context/PostContext";
 
  const  AppPost = ()=> {  
@@ -21,7 +21,8 @@ return (
               <Route path="/" element = {<HomePage />}/>
               <Route path="/login" element = {<LoginPage />}/>
               <Route path="/register" element = {<RegisterPage/> }/>                                   
-                  <Route element = {<PrivateRoutes/>}>             
+                  <Route element = {<PrivateRoutes/>}>       
+                    <Route path="/users" element = {<PostUsers /> }/>         
                     <Route path="/posts" element = {<PostPage /> }/>        
                     <Route path="/Add-Post" element = {<PostFormPage /> }/>        
                     {/* <Route path="/Post" element = {<PostPage />}/> */}

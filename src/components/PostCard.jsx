@@ -40,30 +40,3 @@ function PostCard( { post }) {
 export default PostCard
 
    
-{/* <div className="  bg-zinc-700 max-w-md w-full p-10 rounded-md">
-     
-<div >
-  <header className="flex justify-between items-center">
-  <img 
-  src={post.imageURL}
-  alt="Post Image"
-  className="w-full h-40 rounded-md object-cover"/> 
-
-    <h1 className="text-xl font-serif" >{post.title}</h1>
-    <div className="flex gap-x-2 items-center" >
-
-      <button className= " bg-red-500 gap-1 ps-2 pr-2  px-4  rounded-md text-xl  text-white" onClick={() => {deletePost(post._id);
-      }}> 
-      Delete</button>
-
-       
-        <Link className= " bg-teal-600  gap-1 ps-2 pr-2  px-4  rounded-md text-xl  text-white" to={`/tasks/${post._id}`}>  Edit </Link>                         
-    </div>
-    </header>
-
-    <p className="text-slate-300"> {post.description} </p>
-    <p className="text-slate-300"> {post.comments} </p>
-    {/* <p>{new Date(post.date).toLocaleDateString()} </p> */}
-//   </div>
-
-// </div> */}

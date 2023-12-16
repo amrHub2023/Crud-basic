@@ -1,5 +1,5 @@
 import { createContext,useContext, useState } from "react";
-import { createPostRequest, getPostsRequest, deletePostRequest, getPostRequest, updatePostRequest } from "../api/posts";
+import { createPostRequest, getPostsRequest, deletePostRequest, getPostRequest, updatePostRequest, getUserRequest } from "../api/posts";
 
 
 //se usa para mantener los datos de las tareas visibbles
@@ -17,6 +17,23 @@ return context;
 
 export const PostProvider = ( {children} ) => {
 const [posts, setPosts] = useState([]);
+const [users, setUsers]= useState([]);
+
+
+
+// muestra todas las tareas
+const getAllUser = async () => {
+    try {
+        const res = await getUserRequest();
+        setUsers(res.data);
+        console.log('En getAllUser el valor de res',res);    
+        console.log('el valor de users',users)
+    } catch (error) {
+        console.error(error);
+    }
+    
+};
+
 
 // muestra todas las tareas
 const getPosts = async () => {
@@ -70,7 +87,8 @@ try {
             getPosts,
             deletePost,
             getPost,
-            updatePost
+            updatePost,
+            getAllUser
          }}
         >
         { children }
