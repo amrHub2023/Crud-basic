@@ -1,35 +1,35 @@
 import {useForm} from 'react-hook-form'
-import { useTasks } from '../context/TaskContext';
+import { usePosts } from '../context/PostContext';
 import {useNavigate , useParams} from 'react-router-dom'
 import { useEffect } from 'react';
 
 
-const TaskFormPage = () => {
+const PostFormPage = () => {
     const {register, handleSubmit, setValue  } = useForm();  
-    const {createTask , getTask, updateTask } = useTasks();
+    const {createPost , getPost, updatePost } = usePosts();
     const navigate = useNavigate();
     const params = useParams();
     
 useEffect(() => {
- async function loadTask() {
+ async function loadPost() {
   if (params.id) {
-    const task = await getTask(params.id);
-    console.log(task)
-    setValue('title', task.title)  
-    setValue('description', task.description)
+    const post = await getPost(params.id);
+    console.log(post)
+    setValue('title', post.title)  
+    setValue('description', post.description)
  }
   }
-  loadTask()
+  loadPost()
 },[])
 
     const onSubmit = handleSubmit ( (data) => {
       if (params.id) {
-        updateTask(params.id, data)
+        updatePost(params.id, data)
       } else{
-        createTask(data)
+        createPost(data)
       }
       
-      navigate('/tasks')
+      navigate('/posts')
     
 });
 // items-center justify-center  className='bg-zinc-800 max-w-md w-full  p-10 rounded-md'
@@ -51,6 +51,18 @@ useEffect(() => {
             {...register("description")}
             className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md my-2">
             </textarea>
+
+            
+            <label htmlFor="imageURL">Image Post </label>
+            
+            <input type="text"
+            name='imageURL' 
+            placeholder='ImageURL'
+            {...register("imageURL")}
+            autoFocus className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md my-2">
+            </input>
+            
+
             <label htmlFor="Date">Date</label>
             <input type="date" name="date" placeholder='Fecha finalizacion'
             {...register("date")}
@@ -63,4 +75,4 @@ useEffect(() => {
   )
 };
 
-export default TaskFormPage
+export default PostFormPage
